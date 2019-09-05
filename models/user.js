@@ -28,5 +28,17 @@ const User = new Schema({
 	email: {
 		type: Email,
 		required: true
+	},
+	password: {
+		type: String,
+		required: true
+	},
+	isMember: {
+		type: Boolean,
+		default: false
+	},
+	isAdmin: {
+		type: Boolean,
+		default: false
 	}
 });
