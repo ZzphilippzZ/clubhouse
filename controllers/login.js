@@ -37,3 +37,7 @@ passport.deserializeUser(function(id, done) {
     done(err, user);
   });
 });
+
+exports.signup = (req, res) {
+	res.render('signup');
+};
