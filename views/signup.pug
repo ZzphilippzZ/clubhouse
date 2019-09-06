@@ -2,24 +2,27 @@ extends layout
 
 block content
 
-  form(method='POST' action='')
-    label(for='firstName') First name:
-    input(type='text' placeholder='First name' name='firstName' required='true')
+	div
+		form(method='POST' action='')
+		label(for='firstName') First name:
+		input(type='text' placeholder='First name' name='firstName' required='true')
 
-    label(for='lastName') Last name:
-    input(type='text' placeholder='Last name' name='lastName' required='true')
+		label(for='lastName') Last name:
+		input(type='text' placeholder='Last name' name='lastName' required='true')
 
-    label(for='username') Username:
-    input(type='text' placeholder='Username' name='username' required='true')
+		label(for='username') Username:
+		input(type='text' placeholder='Username' name='username' required='true')
 
-    label(for='email') Email:
-    input(type='email' placeholder='Email' name='email' required='true')
+		label(for='email') Email:
+		input(type='email' placeholder='Email' name='email' required='true')
 
-    label(for='password') Password:
-    input(type='password' placeholder='Password' name='password' required='true')
+		label(for='password') Password:
+		input(type='password' placeholder='Password' name='password' required='true')
 
-    label(for='memberPassword') Member password:
-    input(type='password' placeholder='Member password' name='memberPassword')
+		label(for='memberPassword') Member password:
+		input(type='password' placeholder='Member password' name='memberPassword')
 
-    label(for='adminPassword') Admin password:
-    input(type='password' placeholder='Admin password' name='adminPassword')
+		label(for='adminPassword') Admin password:
+		input(type='password' placeholder='Admin password' name='adminPassword')
+
+		button(type='submit') Submit
