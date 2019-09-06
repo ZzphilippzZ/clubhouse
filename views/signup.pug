@@ -2,27 +2,34 @@ extends layout
 
 block content
 
-	div
-		form(method='POST' action='')
-		label(for='firstName') First name:
-		input(type='text' placeholder='First name' name='firstName' required='true')
+	form(method='POST' action='')
+		div.form-group.form-row
+			label.col-sm-2.col-form-label(for='firstName') First name:
+			div.col-sm-10
+				input#firstName.form-control(type='text' placeholder='First name' name='firstName' required='true')
+		div.form-group.form-row
+			label.col-sm-2.col-form-label(for='lastName') Last name:
+			div.col-sm-10
+				input#lastName.form-control(type='text' placeholder='Last name' name='lastName' required='true')
+		div.form-group.form-row
+			label.col-sm-2.col-form-label(for='username') Username:
+			div.col-sm-10
+				input#username.form-control(type='text' placeholder='Username' name='username' required='true')
+		div.form-group.form-row
+			label.col-sm-2.col-form-label(for='email') Email:
+			div.col-sm-10
+				input#email.form-control(type='email' placeholder='Email' name='email' required='true')
+		div.form-group.form-row
+			label.col-sm-2.col-form-label(for='password') Password:
+			div.col-sm-10
+				input#password.form-control(type='password' placeholder='Password' name='password' required='true')
+		div.form-group.form-row
+			label.col-sm-2.col-form-label(for='memberPassword') Member password:
+			div.col-sm-10
+				input#memberPassword.form-control(type='password' placeholder='Member password' name='memberPassword')
+		div.form-group.form-row
+			label.col-sm-2.col-form-label(for='adminPassword') Admin password:
+			div.col-sm-10
+				input#adminPassword.form-control(type='password' placeholder='Admin password' name='adminPassword')
 
-		label(for='lastName') Last name:
-		input(type='text' placeholder='Last name' name='lastName' required='true')
-
-		label(for='username') Username:
-		input(type='text' placeholder='Username' name='username' required='true')
-
-		label(for='email') Email:
-		input(type='email' placeholder='Email' name='email' required='true')
-
-		label(for='password') Password:
-		input(type='password' placeholder='Password' name='password' required='true')
-
-		label(for='memberPassword') Member password:
-		input(type='password' placeholder='Member password' name='memberPassword')
-
-		label(for='adminPassword') Admin password:
-		input(type='password' placeholder='Admin password' name='adminPassword')
-
-		button(type='submit') Submit
+		button.btn.btn-primary(type='submit') Submit
