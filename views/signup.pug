@@ -2,34 +2,35 @@ extends layout
 
 block content
 
-	form(method='POST' action='')
-		div.form-group.form-row
-			label.col-sm-2.col-form-label(for='firstName') First name:
-			div.col-sm-10
-				input#firstName.form-control(type='text' placeholder='First name' name='firstName' required='true')
-		div.form-group.form-row
-			label.col-sm-2.col-form-label(for='lastName') Last name:
-			div.col-sm-10
-				input#lastName.form-control(type='text' placeholder='Last name' name='lastName' required='true')
-		div.form-group.form-row
-			label.col-sm-2.col-form-label(for='username') Username:
-			div.col-sm-10
-				input#username.form-control(type='text' placeholder='Username' name='username' required='true')
-		div.form-group.form-row
-			label.col-sm-2.col-form-label(for='email') Email:
-			div.col-sm-10
-				input#email.form-control(type='email' placeholder='Email' name='email' required='true')
-		div.form-group.form-row
-			label.col-sm-2.col-form-label(for='password') Password:
-			div.col-sm-10
-				input#password.form-control(type='password' placeholder='Password' name='password' required='true')
-		div.form-group.form-row
-			label.col-sm-2.col-form-label(for='memberPassword') Member password:
-			div.col-sm-10
-				input#memberPassword.form-control(type='password' placeholder='Member password' name='memberPassword')
-		div.form-group.form-row
-			label.col-sm-2.col-form-label(for='adminPassword') Admin password:
-			div.col-sm-10
-				input#adminPassword.form-control(type='password' placeholder='Admin password' name='adminPassword')
+	div.d-flex.justify-content-center.signup-form
+		form(method='POST' action='')
+			div.form-group.form-row
+				label.col-sm-3.col-form-label.col-form-label-sm(for='firstName') First name:
+				div.col-sm-9
+					input#firstName.form-control.form-control-sm(type='text' placeholder='First name' name='firstName' required='true')
+			div.form-group.form-row
+				label.col-sm-3.col-form-label.col-form-label-sm(for='lastName') Last name:
+				div.col-sm-9
+					input#lastName.form-control.form-control-sm(type='text' placeholder='Last name' name='lastName' required='true')
+			div.form-group.form-row
+				label.col-sm-3.col-form-label.col-form-label-sm(for='username') Username:
+				div.col-sm-9
+					input#username.form-control.form-control-sm(type='text' placeholder='Username' name='username' required='true')
+			div.form-group.form-row
+				label.col-sm-3.col-form-label.col-form-label-sm(for='email') Email:
+				div.col-sm-9
+					input#email.form-control.form-control-sm(type='email' placeholder='Email' name='email' required='true')
+			div.form-group.form-row
+				label.col-sm-3.col-form-label.col-form-label-sm(for='password') Password:
+				div.col-sm-9
+					input#password.form-control.form-control-sm(type='password' placeholder='Password' name='password' required='true')
+			div.form-group.form-row
+				label.col-sm-3.col-form-label.col-form-label-sm(for='memberPassword') Member password:
+				div.col-sm-9
+					input#memberPassword.form-control.form-control-sm(type='password' placeholder='Member password' name='memberPassword')
+			div.form-group.form-row
+				label.col-sm-3.col-form-label.col-form-label-sm(for='adminPassword') Admin password:
+				div.col-sm-9
+					input#adminPassword.form-control.form-control-sm(type='password' placeholder='Admin password' name='adminPassword')
 
-		button.btn.btn-primary(type='submit') Submit
+			button.btn.btn-sm.btn-primary.btn-block(type='submit') Submit
