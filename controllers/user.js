@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const Password = require('../models/password');
 
 const validator = require('express-validator');
 
@@ -54,7 +55,7 @@ exports.user_create_post = [
 			});
 
 			if(!errors.isEmpty()) {
-				res.render('signup', {user: user, errors: errors.array()});
+				res.render('signup_form', {user: user, errors: errors.array()});
 					return;
 			}
 			else {
