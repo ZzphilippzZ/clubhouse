@@ -72,7 +72,7 @@ function usernameExists() {
 			return false;
 		}
 		return true;
-	}
+	});
 }
 
 function emailExists() {
@@ -83,14 +83,14 @@ function emailExists() {
 			return false;
 		}
 		return true;
-	}
+	});
 }
 
 function saveUser(user) {
 	user.save(err => {
 		if(err) return next(err);
 		console.log('User created');
-	}
+	});
 }
 
 function isMember(memberPassword) {
@@ -102,7 +102,7 @@ function getMemberPassword() {
 	.exec((err, memberPassword) => {
 		if(err) return next(err);
 		return memberPassword.value;
-	}
+	});
 }
 
 function isAdmin(adminPassword) {
@@ -114,5 +114,5 @@ function getAdminPassword() {
 	.exec((err, adminPassword) => {
 		if(err) return next(err);
 		return adminPassword.value;
-	}
+	});
 }
