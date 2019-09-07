@@ -26,7 +26,7 @@ const User = new Schema({
 		required: true
 	},
 	email: {
-		type: Email,
+		type: mongoose.SchemaTypes.Email,
 		required: true
 	},
 	password: {

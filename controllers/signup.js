@@ -38,6 +38,6 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
-exports.signup = (req, res) {
+exports.signup = (req, res) => {
 	res.render('signup');
 };
