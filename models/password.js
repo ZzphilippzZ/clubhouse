@@ -12,3 +12,5 @@ const Password = new Schema({
 		required: true
 	}
 });
+
+module.exports = mongoose('Password', Password);
