@@ -13,4 +13,4 @@ const Password = new Schema({
 	}
 });
 
-module.exports = mongoose('Password', Password);
+module.exports = mongoose.model('Password', Password);
