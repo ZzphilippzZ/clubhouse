@@ -3,8 +3,6 @@ const Password = require('../models/password');
 
 const validator = require('express-validator');
 
-const async = require('async');
-
 exports.user_create_get = (req, res) => {
 	res.render('signup_form');
 };
@@ -14,34 +12,42 @@ exports.user_create_post = [
 	validator.body('firstName', 'First name required')
 	.trim()
 	.escape()
-	.isEmpty({ignore_whitespace: true})
+	.isLength({min: 1})
 	.isAlpha(),
 
 	validator.body('lastName', 'Last name required')
 	.trim()
 	.escape()
-	.isEmpty({ignore_whitespace: true})
+	.isLength({min: 1})
 	.isAlpha(),
 
 	validator.body('username', 'Username required')
 	.trim()
 	.escape()
-	.isEmpty({ignore_whitespace: true})
+	.isLength({min: 1})
 	.isAlphanumeric()
-	.custom(usernameExists),
+	.custom(async (username) => {
+		if(await usernameExists(username)) {
+			return Promise.reject('Username is taken');
+		}
+	}),
 
 	validator.body('email', 'Email required')
 	.trim()
 	.escape()
 	.isEmail()
-	.custom(emailExists),
+	.custom(async (email) => {
+		if(await emailExists(email)) {
+			return Promise.reject('Email is already registered');
+		}
+	}),
 
 	validator.body('password', 'Password must have at least six characters')
 	.trim()
 	.escape()
 	.isLength({min: 6}),
 
-	(req, res, next) => {
+	async (req, res, next) => {
 			const errors = validator.validationResult(req);
 
 			let user = new User({
@@ -50,8 +56,8 @@ exports.user_create_post = [
 				username: req.body.username,
 				email: req.body.email,
 				password: req.body.password,
-				isMember: isMember(req.body.memberPassword),
-				isAdmin: isAdmin(req.body.adminPassword)
+				isMember: await isMember(req.body.memberPassword),
+				isAdmin: await isAdmin(req.body.adminPassword)
 			});
 
 			if(!errors.isEmpty()) {
@@ -60,59 +66,48 @@ exports.user_create_post = [
 			}
 			else {
 				saveUser(user);
+				res.render('signup_form');
+					return;
 			}
 	}
 ];
 
-function usernameExists() {
-	User.findOne({'username': req.body.username})
-	.exec(function(err, usernameExists) {
-		if(err) return next(err);
-		if(usernameExists) {
-			return false;
-		}
-		return true;
-	});
+async function usernameExists(value) {
+	let user = await User.findOne({username: value})
+	.exec();
+	if(user) return true;
+	return false;
 }
 
-function emailExists() {
-	User.findOne({'email': req.body.email})
-	.exec(function(err, emailExists) {
-		if(err) return next(err);
-		if(emailExists) {
-			return false;
-		}
-		return true;
-	});
+async function emailExists(value) {
+	let user = await User.findOne({email: value})
+	.exec();
+	if(user) return true;
+	return false;
 }
 
 function saveUser(user) {
 	user.save(err => {
 		if(err) return next(err);
-		console.log('User created');
 	});
 }
 
-function isMember(memberPassword) {
-	return memberPassword === getMemberPassword();
+async function isMember(memberPassword) {
+	return memberPassword === await getMemberPassword();
 }
 
-function getMemberPassword() {
-	Password.findOne({'name': 'memberPassword'})
-	.exec((err, memberPassword) => {
-		if(err) return next(err);
-		return memberPassword.value;
-	});
+async function getMemberPassword() {
+	let password = await Password.findOne({name: 'memberPassword'})
+	.exec();
+	return password.value;
 }
 
-function isAdmin(adminPassword) {
-	return adminPassword === getAdminPassword();
+async function isAdmin(adminPassword) {
+	return adminPassword === await getAdminPassword();
 }
 
-function getAdminPassword() {
-	Password.findOne({'name': 'adminPassword'})
-	.exec((err, adminPassword) => {
-		if(err) return next(err);
-		return adminPassword.value;
-	});
+async function getAdminPassword() {
+	let password = await Password.findOne({name: 'adminPassword'})
+	.exec();
+	return password.value;
 }
