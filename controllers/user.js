@@ -56,7 +56,7 @@ exports.user_create_post = [
 				lastName: req.body.lastName,
 				username: req.body.username,
 				email: req.body.email,
-				password: req.body.password,
+				password: await hashPassword(req.body.password),
 				isMember: await isMember(req.body.memberPassword),
 				isAdmin: await isAdmin(req.body.adminPassword)
 			});
@@ -91,6 +91,11 @@ async function saveUser(newUser) {
 	newUser.save(err => {
 		if(err) return next(err);
 	});
+}
+
+async function hashPassword(password) {
+	let hashedPassword = await bcrypt.hash(password, 10);
+	return hashedPassword;
 }
 
 async function isMember(memberPassword) {
