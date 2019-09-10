@@ -1,6 +1,7 @@
 const User = require('../models/user');
 const Password = require('../models/password');
 
+const bcrypt = require('bcryptjs');
 const validator = require('express-validator');
 
 exports.user_create_get = (req, res) => {
@@ -50,7 +51,7 @@ exports.user_create_post = [
 	async (req, res, next) => {
 			const errors = validator.validationResult(req);
 
-			let user = new User({
+			let newUser = new User({
 				firstName: req.body.firstName,
 				lastName: req.body.lastName,
 				username: req.body.username,
@@ -61,11 +62,11 @@ exports.user_create_post = [
 			});
 
 			if(!errors.isEmpty()) {
-				res.render('signup_form', {user: user, errors: errors.array()});
+				res.render('signup_form', {newUser: newUser, errors: errors.array()});
 					return;
 			}
 			else {
-				saveUser(user);
+				await saveUser(newUser);
 				res.render('signup_form');
 					return;
 			}
@@ -86,8 +87,8 @@ async function emailExists(value) {
 	return false;
 }
 
-function saveUser(user) {
-	user.save(err => {
+async function saveUser(newUser) {
+	newUser.save(err => {
 		if(err) return next(err);
 	});
 }
