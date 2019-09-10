@@ -121,3 +121,10 @@ async function getAdminPassword() {
 exports.user_signin_get = (req, res) => {
 	res.render('signin_form');
 };
+
+exports.user_signin_post = [ 
+ 	passport.authenticate("local", {
+    		successRedirect: "/",
+    		failureRedirect: "/"
+  	})
+];
