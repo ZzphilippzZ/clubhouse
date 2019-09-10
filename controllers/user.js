@@ -117,3 +117,7 @@ async function getAdminPassword() {
 	.exec();
 	return password.value;
 }
+
+exports.user_signin_get = (req, res) => {
+	res.render('signin_form');
+};
