@@ -8,6 +8,8 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const signinRouter = require('./routes/signinRouter');
 
+const passport = require('./controllers/authenticateController');
+
 var app = express();
 
 const mongoose = require('mongoose');
@@ -24,6 +26,8 @@ app.set('view engine', 'pug');
 
 app.use(logger('dev'));
 app.use(express.json());
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
