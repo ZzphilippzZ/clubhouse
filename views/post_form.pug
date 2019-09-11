@@ -1,6 +1,8 @@
 extends layout
 
 block content
+	include mixins/mixin
+	+navbar
 
 	div.d-flex.justify-content-center.post-form
 		form(method='POST' action='')
