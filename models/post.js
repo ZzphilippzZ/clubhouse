@@ -22,8 +22,7 @@ const Post = new Schema({
 	},
 	timestamp: {
 		type: Date,
-		default: moment(Date.now).fromNow(),
-		required: true
+		default: Date.now
 	}
 });
 
