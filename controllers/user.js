@@ -6,6 +6,10 @@ const bcrypt = require('bcryptjs');
 const validator = require('express-validator');
 
 exports.user_create_get = (req, res) => {
+	if(req.user) {
+		res.locals.currentUser = req.user;
+		res.redirect('/post');
+	}
 	res.render('signup_form');
 };
 
