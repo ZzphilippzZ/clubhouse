@@ -4,6 +4,12 @@ exports.post_list_get = (req, res) => {
 	if(!req.user) {
 		res.redirect('/sign-in');
 	}
+
 	res.locals.currentUser = req.user;
-	res.render('post_list');
+	list_posts = await getPosts();
+	res.render('post_list', {post_list: list_posts});
 };
+
+async function getPosts() {
+	return await Post.find().exec();
+}
