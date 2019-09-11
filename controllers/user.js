@@ -69,8 +69,6 @@ exports.user_create_post = [
 			else {
 				await saveUser(newUser);
 				await login(newUser, req, res);
-				//res.render('signup_form');
-				//	return;
 			}
 	}
 ];
@@ -123,8 +121,7 @@ async function getAdminPassword() {
 async function login(user, req, res) {
 	req.login(user, err => {
 		if(err) return next(err);
-		res.locals.currentUser = req.user;
-		return res.redirect('/post');
+		return res.redirect('/');
 	});
 }
 
