@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
 
-const userController = require('../controllers/user');
-
 /* GET home page. */
 router.get('/', (req, res) => {
+	if(req.user) {
+		res.redirect('/post');
+	}
 	res.redirect('/sign-up');
 });
 
