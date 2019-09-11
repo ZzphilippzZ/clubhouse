@@ -9,6 +9,7 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const signinRouter = require('./routes/signinRouter');
 const signupRouter = require('./routes/signupRouter');
+const postRouter = require('./routes/postRouter');
 
 const passport = require('./controllers/authenticateController');
 
@@ -39,6 +40,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/sign-in', signinRouter);
 app.use('/sign-up', signupRouter);
+app.use('/post', postRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
