@@ -1,6 +1,6 @@
 const Post = require('../models/post');
 
-exports.post_list_get = (req, res) => {
+exports.post_list_get = async (req, res) => {
 	if(!req.user) {
 		res.redirect('/sign-in');
 	}
