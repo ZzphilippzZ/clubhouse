@@ -10,7 +10,13 @@ block content
 		ul
 			each post in post_list
 				li
-					post.body
+					p #{post.title}
+					p #{post.body}
+					if(currentUser.isMember)
+						p #{post.user.username}
+					else
+						p anonymous
+					p #{post.timestamp}
 			else
 				li
 					p There are no posts
