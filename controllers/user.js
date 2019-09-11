@@ -123,8 +123,8 @@ async function getAdminPassword() {
 async function login(user, req, res) {
 	req.login(user, err => {
 		if(err) return next(err);
-		console.log(req.user.username);
-		return res.redirect('/sign-in');
+		res.locals.currentUser = req.user;
+		return res.redirect('/post');
 	});
 }
 
