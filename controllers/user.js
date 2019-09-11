@@ -143,3 +143,8 @@ exports.user_signin_post = [
     		failureRedirect: "/sign-in"
   	})
 ];
+
+exports.user_logout_get = (req, res) => {
+	req.logout();
+	res.redirect('/sign-in');
+};
