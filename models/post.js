@@ -2,10 +2,14 @@ const moment = require('moment');
 const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
-const ObjectId = Schema.ObjectId;
+const ObjectId = Schema.Types.ObjectId;
 
 const Post = new Schema({
-	author: [User],
+	user: {
+		type: ObjectId,
+		ref: 'User',
+		required: true
+	},
 	title: {
 		type: String,
 		maxlength: 25
@@ -23,4 +27,4 @@ const Post = new Schema({
 	}
 });
 
-module.exports = mongoose('Post', Post);
+module.exports = mongoose.model('Post', Post);
