@@ -3,5 +3,13 @@ extends layout
 block content
 	if(currentUser)
 		h1 Hello #{currentUser.username}
+
+		ul
+			each post in post_list
+				li
+					post.body
+			else
+				li
+					p There are no posts
 	else
 		h1 No user
