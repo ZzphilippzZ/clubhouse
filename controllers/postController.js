@@ -1,6 +1,6 @@
 const Post = require('../models/post');
 
-exports.post_list = (req, res) => {
-	if(err) return next(err);
+exports.post_list_get = (req, res) => {
+	res.locals.currentUser = req.user;
 	res.render('post_list');
 };
