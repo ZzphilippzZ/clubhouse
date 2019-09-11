@@ -130,12 +130,16 @@ async function login(user, req, res) {
 }
 
 exports.user_signin_get = (req, res) => {
+	if(req.user) {
+		res.locals.currentUser = req.user;
+		res.redirect('/post');
+	}
 	res.render('signin_form');
 };
 
 exports.user_signin_post = [ 
  	passport.authenticate("local", {
-    		successRedirect: "/",
+    		successRedirect: "/post",
     		failureRedirect: "/sign-in"
   	})
 ];
