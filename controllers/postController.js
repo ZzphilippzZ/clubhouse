@@ -13,3 +13,12 @@ exports.post_list_get = async (req, res) => {
 async function getPosts() {
 	return await Post.find().exec();
 }
+
+exports.post_create_get = (req, res) => {
+	if(!req.user) {
+		res.redirect('/sign-in');
+	}
+
+	res.locals.currentUser = req.user;
+	res.render('post_form');
+}
