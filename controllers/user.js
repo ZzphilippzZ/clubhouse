@@ -68,8 +68,9 @@ exports.user_create_post = [
 			}
 			else {
 				await saveUser(newUser);
-				res.render('signup_form');
-					return;
+				await login(newUser, req, res);
+				//res.render('signup_form');
+				//	return;
 			}
 	}
 ];
@@ -117,6 +118,14 @@ async function getAdminPassword() {
 	let password = await Password.findOne({name: 'adminPassword'})
 	.exec();
 	return password.value;
+}
+
+async function login(user, req, res) {
+	req.login(user, err => {
+		if(err) return next(err);
+		console.log(req.user.username);
+		return res.redirect('/sign-in');
+	});
 }
 
 exports.user_signin_get = (req, res) => {
