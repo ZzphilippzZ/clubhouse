@@ -7,18 +7,15 @@ block content
 	if(currentUser)
 		h1 Hello #{currentUser.username}
 
-		ul
+		div.list-group
 			each post in post_list
-				li
-					p #{post.title}
-					p #{post.body}
-					if(currentUser.isMember)
-						p #{post.user.username}
-					else
-						p anonymous
-					p #{post.timeAgo}
+				div.list-group-item.list-group-item-action.flex-column.align-items-start
+					div.d-flex.w-100.justify-content-between
+						h5.mb-1 #{post.title}
+						if(currentUser.isMember)
+							small by #{post.user.username} #{post.timeAgo}
+					p.mb-1 #{post.body}
+					if(currentUser.isAdmin)
+						button.btn.btn-outline-danger.btn-sm Delete
 			else
-				li
-					p There are no posts
-	else
-		h1 No user
+				p There are no posts
