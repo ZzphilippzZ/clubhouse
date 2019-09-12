@@ -55,3 +55,12 @@ async function createNewPost(req) {
 		user: req.user._id
 	});
 }
+
+exports.post_delete_post = async (req, res) => {
+	await deletePost(req.body.postId); 
+	res.redirect('/post');
+};
+
+async function deletePost(postId) {
+	return await Post.findByIdAndRemove(postId);
+}
