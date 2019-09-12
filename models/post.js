@@ -28,7 +28,7 @@ const Post = new Schema({
 
 Post
 .virtual('timeAgo')
-.get(() => {
+.get(function() {
 	return moment(this.timestamp).fromNow();
 });
 
