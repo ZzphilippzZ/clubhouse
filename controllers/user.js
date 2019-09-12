@@ -125,7 +125,8 @@ async function getAdminPassword() {
 async function login(user, req, res) {
 	req.login(user, err => {
 		if(err) return next(err);
-		return res.redirect('/');
+		res.locals.currentUser = user;
+		res.redirect('/post');
 	});
 }
 

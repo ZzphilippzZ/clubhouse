@@ -39,5 +39,9 @@ passport.deserializeUser(function(id, done) {
 });
 
 exports.signup = (req, res) => {
+	if(req.user) {
+		res.locals.currentUser = req.user;
+		res.redirect('/post');
+	}
 	res.render('signup');
 };
