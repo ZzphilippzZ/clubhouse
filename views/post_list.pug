@@ -16,6 +16,8 @@ block content
 							small by #{post.user.username} #{post.timeAgo}
 					p.mb-1 #{post.body}
 					if(currentUser.isAdmin)
-						button.btn.btn-outline-danger.btn-sm Delete
+						form(method='POST' action='')
+							input(name='postId' type='hidden' value=`${post._id}`)
+							button.btn.btn-outline-danger.btn-sm Delete
 			else
 				p There are no posts
