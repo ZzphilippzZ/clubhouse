@@ -1,12 +1,15 @@
-function addFunctionToButtons(fn) {
-	let buttons = document.querySelectorAll('button');
-	for(let button of buttons) {
-		button.addEventListener('click', fn);
+function addFunctionToForms(fn) {
+	let forms = document.querySelectorAll('form');
+	for(let form of forms) {
+		form.addEventListener('submit', fn);
 	}
 }
 
-function confirmPostDelete() {
+function confirmPostDeletion(event) {
 	let isConfirmed = confirm('Are you sure you want to delete this post');
+	if(!isConfirmed) {
+		event.preventDefault();
+	}
 };
 
-addFunctionToButtons(confirmDeletePost);
+addFunctionToForms(confirmPostDeletion);
