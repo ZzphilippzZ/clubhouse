@@ -20,7 +20,7 @@ const mongoose = require('mongoose');
 //const mongoDB = process.env.MONGODB_URI; 
 const mongoDB = require('./config.js').MONGODB_Uri;
 
-mongoose.connect(mongoDB, {useNewUrlParser: true});
+mongoose.connect(mongoDB, {useNewUrlParser: true, useFindAndModify: false});
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
