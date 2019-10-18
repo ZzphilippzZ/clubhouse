@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const session = require('express-session');
 const mongoose = require('mongoose');
+require('dotenv').config();
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -17,8 +18,8 @@ const passport = require('./controllers/authenticateController');
 
 const app = express();
 
-// const mongoDB = process.env.MONGODB_URI;
-const mongoDB = require('./config.js').MONGODB_Uri;
+const mongoDB = process.env.MONGODB_URI;
+// const mongoDB = require('./config.js').MONGODB_Uri;
 
 mongoose.connect(mongoDB, { useNewUrlParser: true, useFindAndModify: false });
 // const db = mongoose.connection;
