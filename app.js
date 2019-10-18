@@ -1,9 +1,10 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 const session = require('express-session');
+const mongoose = require('mongoose');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -14,15 +15,14 @@ const logoutRouter = require('./routes/logoutRouter');
 
 const passport = require('./controllers/authenticateController');
 
-var app = express();
+const app = express();
 
-const mongoose = require('mongoose');
-//const mongoDB = process.env.MONGODB_URI; 
+// const mongoDB = process.env.MONGODB_URI;
 const mongoDB = require('./config.js').MONGODB_Uri;
 
-mongoose.connect(mongoDB, {useNewUrlParser: true, useFindAndModify: false});
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+mongoose.connect(mongoDB, { useNewUrlParser: true, useFindAndModify: false });
+// const db = mongoose.connection;
+// db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -30,7 +30,7 @@ app.set('view engine', 'pug');
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
+app.use(session({ secret: 'cats', resave: false, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
@@ -45,12 +45,12 @@ app.use('/post', postRouter);
 app.use('/logout', logoutRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use((err, req, res) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
