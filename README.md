@@ -1,4 +1,4 @@
-# Clubhouse website
+# Clubhouse Website
 
 A site where anyone can sign up and post messages
 
