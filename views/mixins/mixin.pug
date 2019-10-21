@@ -1,7 +1,10 @@
 mixin navbar
-	nav.navbar.navbar-expand-md.navbar-light.bg-light
-		div.collapse.navbar-collapse
-			div.navbar-nav
-				a.nav-item.nav-link(href='/post') Posts
-				a.nav-item.nav-link(href='/post/create') New Post
-				a.nav-item.nav-link(href='/logout') Logout
+  nav.navbar.navbar-expand-sm.navbar-light.bg-light
+    a.navbar-brand(href='#') Clubhouse
+    button.navbar-toggler(data-toggle='collapse' data-target='#navbarNavAltMarkup')
+      span.navbar-toggler-icon
+    div.collapse.navbar-collapse(id='navbarNavAltMarkup')
+      div.navbar-nav
+        a.nav-item.nav-link(href='/post') Posts
+        a.nav-item.nav-link(href='/post/create') New Post
+        a.nav-item.nav-link(href='/logout') Logout
