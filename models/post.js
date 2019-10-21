@@ -28,6 +28,6 @@ const Post = new Schema({
 
 Post
   .virtual('timeAgo')
-  .get(() => moment(this.timestamp).fromNow());
+  .get(function timeAgo() { return moment(this.timestamp).fromNow(); });
 
 module.exports = mongoose.model('Post', Post);
